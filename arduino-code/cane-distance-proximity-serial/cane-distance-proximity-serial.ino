@@ -8,11 +8,12 @@ int trigPin1 = 9;
 int echoPin1 = 10;
 int trigPin2 = 12;
 int echoPin2 = 11;
-int duration = 100 ;
+int duration = 100;
 //This code is to use with FC51 IR proximity sensor, when it detects an obstacle it lights the internal LED
 //of the Arduino Board, refer to Surtrtech for more information
 const int ProxSensor=5; //Declaring where the Out pin from the sensor is wired
-
+bool ProxSensorvalue;
+int nota=340;
 void setup() {
   myservo.attach(3);  //συνδέει το servo στον ακροδέκτη 3 με το αντικείμενο servo
   Serial.begin (9600);
@@ -26,7 +27,7 @@ void setup() {
 
 void beep(){
    // παίξε έναν τόνο στον ακροδέκτη 13
-  tone(13, 340, duration);
+  tone(13, nota, duration);
   delay(duration);
   // απενεργοποιήστε τη λειτουργία τόνου για τον ακροδέκτη 13
   noTone(13);
@@ -73,23 +74,31 @@ void sensor2(){ //Αυτή η λειτουργία είναι για τον δε
       Serial.print("cm    ");  
     if (distance2 <=15 && distance2 >=1) {  // Αλλάξτε τον αριθμό για μεγάλες ή μικρές αποστάσεις.
      duration = 600;
+     nota=340;
      beep();
     } else if (distance2 <=40 && distance2 >=16) {  // Αλλάξτε τον αριθμό για μεγάλες ή μικρές αποστάσεις.
       delay(250);
      duration = 300;
+     nota=340;
      beep();   
      } else if (distance2 <=65 && distance2 >=41) {  // Αλλάξτε τον αριθμό για μεγάλες ή μικρές αποστάσεις.
       delay(500);
      duration = 50;
+    nota=340;
      beep();    
     } else {
       // Μην κάνεις τίποτα
   }  
  }
  void sensor3() {
-   if(digitalRead(ProxSensor)==HIGH)      //Check the sensor output if it's high
+ProxSensorvalue = digitalRead(ProxSensor);
+   Serial.print("3rd Sensor: ");
+      Serial.print(ProxSensorvalue); 
+      Serial.print(" logic ");  
+   if(digitalRead(ProxSensor)==LOW)      //Check the sensor output if it's high
              {
-     duration = 600;
+     duration = 800;
+    nota=140;
      beep();
      } else {
              //Μην κάνεις τίποτα
