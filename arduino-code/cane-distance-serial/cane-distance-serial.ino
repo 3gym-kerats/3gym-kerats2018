@@ -67,7 +67,7 @@ void sensor2(){ //Αυτή η λειτουργία είναι για τον δε
       Serial.print(distance2); 
       Serial.print("cm    ");  
     if (distance2 <=15 && distance2 >=1) {  // Αλλάξτε τον αριθμό για μεγάλες ή μικρές αποστάσεις.
-     duration = 600;
+     duration = 800;
      beep();
     } else if (distance2 <=40 && distance2 >=16) {  // Αλλάξτε τον αριθμό για μεγάλες ή μικρές αποστάσεις.
       delay(250);
