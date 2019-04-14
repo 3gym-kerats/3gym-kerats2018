@@ -12,7 +12,6 @@ int duration = 100 ;
 
 void setup() {
     myservo.attach(3);  //συνδέει το servo στον ακροδέκτη 3 με το αντικείμενο servo
-  
   pinMode(trigPin1, OUTPUT);
   pinMode(echoPin1, INPUT);
   pinMode(trigPin2, OUTPUT);
@@ -31,11 +30,11 @@ void servomove(){
 for (pos = 0; pos <= 180; pos += 10) { // πηγαίνει από 0 μοίρες έως 180 μοίρες
     // σε βήματα 1 βαθμού
     myservo.write(pos);              // πείτε στο σερβο να πάει στη θέση του σε μεταβλητή 'pos'
-    delay(5);                       // περιμένει 15ms για το σερβο να φτάσει στη θέση
+    delay(5);                       // περιμένει 5ms για το σερβο να φτάσει στη θέση
   }
   for (pos = 180; pos >= 0; pos -= 10) { // πηγαίνει από 180 μοίρες έως 0 μοίρες
     myservo.write(pos);              // πείτε στο σερβο να πάει στη θέση του σε μεταβλητή 'pos'
-    delay(5);                       // περιμένει 15ms για το σερβο να φτάσει στη θέση
+    delay(5);                       // περιμένει 5ms για το σερβο να φτάσει στη θέση
   }
 }
 
@@ -46,7 +45,7 @@ void sensor1(){ // Αυτή η λειτουργία είναι για τον π�
   digitalWrite (trigPin1, LOW);
   duration1 = pulseIn (echoPin1, HIGH);
   distance1 = (duration1/2) / 29.1;
-     
+   
   if (distance1 <=60 && distance1 >=5) {  // Αλλάξτε τον αριθμό για μεγάλες ή μικρές αποστάσεις.                                                                                                                                                                                                                             
      servomove(); 
     } else {
@@ -61,17 +60,17 @@ void sensor2(){ //Αυτή η λειτουργία είναι για τον δε
     digitalWrite (trigPin2, LOW);
     duration2 = pulseIn (echoPin2, HIGH);
     distance2 = (duration2/2) / 29.1;
-       
+        
     if (distance2 <=15 && distance2 >=1) {  // Αλλάξτε τον αριθμό για μεγάλες ή μικρές αποστάσεις.
-     duration = 800;
+     duration = 50;
      beep();
     } else if (distance2 <=40 && distance2 >=16) {  // Αλλάξτε τον αριθμό για μεγάλες ή μικρές αποστάσεις.
-      delay(250);
+      delay(500);
      duration = 300;
      beep();   
      } else if (distance2 <=65 && distance2 >=41) {  // Αλλάξτε τον αριθμό για μεγάλες ή μικρές αποστάσεις.
-      delay(500);
-     duration = 50;
+      delay(1000);
+     duration = 600;
      beep();    
     } else {
       // Μην κάνεις τίποτα
